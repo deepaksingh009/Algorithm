@@ -1,0 +1,9 @@
+c:\users\work\documents\visual studio 2017\Projects\Algorithm\Algorithm\bin\Debug\netcoreapp1.1\Algorithm.deps.json
+c:\users\work\documents\visual studio 2017\Projects\Algorithm\Algorithm\bin\Debug\netcoreapp1.1\Algorithm.runtimeconfig.json
+c:\users\work\documents\visual studio 2017\Projects\Algorithm\Algorithm\bin\Debug\netcoreapp1.1\Algorithm.runtimeconfig.dev.json
+c:\users\work\documents\visual studio 2017\Projects\Algorithm\Algorithm\bin\Debug\netcoreapp1.1\Algorithm.dll
+c:\users\work\documents\visual studio 2017\Projects\Algorithm\Algorithm\bin\Debug\netcoreapp1.1\Algorithm.pdb
+c:\users\work\documents\visual studio 2017\Projects\Algorithm\Algorithm\obj\Debug\netcoreapp1.1\Algorithm.csprojResolveAssemblyReference.cache
+c:\users\work\documents\visual studio 2017\Projects\Algorithm\Algorithm\obj\Debug\netcoreapp1.1\Algorithm.AssemblyInfo.cs
+c:\users\work\documents\visual studio 2017\Projects\Algorithm\Algorithm\obj\Debug\netcoreapp1.1\Algorithm.dll
+c:\users\work\documents\visual studio 2017\Projects\Algorithm\Algorithm\obj\Debug\netcoreapp1.1\Algorithm.pdb
