@@ -6,7 +6,8 @@ namespace Algorithm
     {
         static void Main(string[] args)
         {
-            Console.WriteLine("Hello World!");
+			Graph graph = new Graph();
+			graph.AddEdge(4, 6, 5);
         }
     }
 }

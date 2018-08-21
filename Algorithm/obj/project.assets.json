@@ -7080,10 +7080,10 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "c:\\users\\work\\documents\\visual studio 2017\\Projects\\Algorithm\\Algorithm\\Algorithm.csproj",
+      "projectUniqueName": "F:\\Deepak\\work\\Algorithm\\Algorithm\\Algorithm.csproj",
       "projectName": "Algorithm",
-      "projectPath": "c:\\users\\work\\documents\\visual studio 2017\\Projects\\Algorithm\\Algorithm\\Algorithm.csproj",
-      "outputPath": "c:\\users\\work\\documents\\visual studio 2017\\Projects\\Algorithm\\Algorithm\\obj\\",
+      "projectPath": "F:\\Deepak\\work\\Algorithm\\Algorithm\\Algorithm.csproj",
+      "outputPath": "F:\\Deepak\\work\\Algorithm\\Algorithm\\obj\\",
       "projectStyle": "PackageReference",
       "originalTargetFrameworks": [
         "netcoreapp1.1"
