@@ -17,6 +17,10 @@ namespace Algorithm
             this.data = data;
         }
     }
+	
+
+/// <!--llk-->
+
     /// <summary>
     /// 4 attributes
     /// A list of vertices (to store node information for each index such as name/text)
