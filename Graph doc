@@ -1,4 +1,4 @@
-Graphs
+﻿Graphs
 A* tree search. Search the optimal path between two nodes on a graph. Special case of best-first search that uses heuristics to improve speed.
 3D Surface Tracker Technology. Process to add images on walls in a video while hidden surfaces are taken into account.
 Bellman-Ford. Computes shortest paths in a weighted graph (where some of the edge weights may be negative).
@@ -22,3 +22,7 @@ Coloring algorithm. Graph coloring algorithm.
 Nearest neighbour. Find nearest neighbour.
 Topological sort. Sort a directed acyclic graph in such a manner that each node comes before all nodes to which it has edges (according to directions).
 Tarjan's off-line least common ancestors algorithm. Compute lowest common ancestors for pairs of nodes in a tree.
+
+
+
+Test Commit.
