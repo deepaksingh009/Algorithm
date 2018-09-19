@@ -16,18 +16,22 @@ namespace Algorithm
             graph.Addnode(2);
             graph.Addnode(3);
             graph.Addnode(4);
+            graph.InsertFirst(0);
+            graph.InsertLast(5);
+            graph.InsertAfter(3, 6);
 
-           int intVal= graph.getlastnode();
+
+            int intVal = graph.GetFirstAdded();
             System.Console.WriteLine(intVal);
 
-            //GenericList<int> gll = new GenericList<int>();
-            //gll.AddNode(5);
-            //gll.AddNode(4);
-            //gll.AddNode(3);
-            //int intVal = gll.GetFirstAdded();
-            // The following line displays 5.
-            //System.Console.WriteLine(intVal);
-            Console.ReadKey();
+            // GenericList<int> gll = new GenericList<int>();
+            // gll.AddNode(5);
+            // gll.AddNode(4);
+            // gll.AddNode(3);
+            // int intVal1 = gll.GetFirstAdded();
+            // //The following line displays 5.
+            //System.Console.WriteLine(intVal1);
+            // Console.ReadKey();
 
 
         }
@@ -63,32 +67,34 @@ namespace Algorithm
     //{
     //    private class Node
     //    {
-    //        // Each node has a reference to the next node in the list.
+    //        //Each node has a reference to the next node in the list.
     //        public Node Next;
-    //        // Each node holds a value of type T.
+    //       // Each node holds a value of type T.
     //        public T Data;
     //    }
 
-    //    // The list is initially empty.
+    //   // The list is initially empty.
     //    private Node head = null;
 
-    //    // Add a node at the beginning of the list with t as its data value.
+    //   // Add a node at the beginning of the list with t as its data value.
     //    public void AddNode(T t)
     //    {
-    //        Node newNode = new Node();
-    //        newNode.Next = head;
-    //        newNode.Data = t;
+    //        Node newNode = new Node
+    //        {
+    //            Next = head,
+    //            Data = t
+    //        };
     //        head = newNode;
     //    }
 
-    //    // The following method returns the data value stored in the last node in
-    //    // the list. If the list is empty, the default value for type T is
+    //    //The following method returns the data value stored in the last node in
+    //    // the list.If the list is empty, the default value for type T is
     //    // returned.
     //    public T GetFirstAdded()
     //    {
-    //        // The value of temp is returned as the value of the method. 
-    //        // The following declaration initializes temp to the appropriate 
-    //        // default value for type T. The default value is returned if the 
+    //        //The value of temp is returned as the value of the method. 
+    //        // The following declaration initializes temp to the appropriate
+    //        // default value for type T. The default value is returned if the
     //        // list is empty.
     //        T temp = default(T);
 
