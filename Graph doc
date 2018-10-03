@@ -1,28 +1,648 @@
-﻿Graphs
-A* tree search. Search the optimal path between two nodes on a graph. Special case of best-first search that uses heuristics to improve speed.
-3D Surface Tracker Technology. Process to add images on walls in a video while hidden surfaces are taken into account.
-Bellman-Ford. Computes shortest paths in a weighted graph (where some of the edge weights may be negative).
-Graph canonization. Find a canonical form of a graph that is isomorphic to another graph. Used in cheminformatics.
-Dijkstra's algorithm. Computes shortest paths in a graph with non-negative edge weights.
-Perturbation methods. An algorithm that computes a locally shortest paths in a graph.
-Floyd-Warshall. Solves the all pairs shortest path problem in a weighted, directed graph.
-Floyd's cycle-finding. Finds cycles in iterations.
-Johnson. All pairs shortest path algorithm in sparse weighted directed graph.
-Hopcroft–Karp algorithm. From a bipartite graph, returns the maximum number of edges with no common endpoints. Alternatives are  breadth-first and depth-first algos.
-Kruskal. Finds a minimum spanning tree for a graph.
-Prim's. Finds a minimum spanning tree for a graph. Also called DJP , Jarník or Prim–Jarník algorithm.
-Boruvka. Finds a minimum spanning tree for a graph.
-Ford-Fulkerson. Computes the maximum flow in a graph.
-Edmonds-Karp. Implementation of Ford-Fulkerson.
-Nonblocking Minimal Spanning Switch. For a telephone exchange.
-Woodhouse-Sharp. Finds a minimum spanning tree for a graph.
-Spring based. Algorithm for graph drawing.
-Hungarian. Algorithm for finding a perfect matching.
-Coloring algorithm. Graph coloring algorithm.
-Nearest neighbour. Find nearest neighbour.
-Topological sort. Sort a directed acyclic graph in such a manner that each node comes before all nodes to which it has edges (according to directions).
-Tarjan's off-line least common ancestors algorithm. Compute lowest common ancestors for pairs of nodes in a tree.
+﻿<!--Dialog For Address Edit part-->
+<app-Setting-dialog [(visible)]="openAddressDialog" >
+    <div class="modal-content" ng-class="{'modal-sm': size == 'sm', 'modal-lg': size == 'lg'}">
+        <div ng-transclude="">
+            <div class="address-form ng-scope" id="edit-address-panel">
+                <form #addressForm="ngForm" name="address_form" id="address_form" class="ng-pristine ng-invalid ng-invalid-required" (ngSubmit)="onSubmit(addressForm)" novalidate="novalidate">
+                    <div class="modal-body">
 
+                        <div class="form-group">
+                            <div class="col-md-4">
+                                <div class="text-right">
+                                    <label for="company_name">
+                                        Company Name:
+                                    </label>
+                                    <div class="required">*</div>
+                                </div>
+                            </div>
+                            <div class="col-md-8">
+                                <!--[(ngModel)]="modal_address.company_name"-->
+                                <input autofocus="" class="form-control ng-pristine ng-valid" name="companyname" #companyName="ngModel" ngModel required   placeholder="Company Name" type="text" style="">
+                                <label *ngIf="companyName.errors?.required && addressForm.submitted" class="error">
+                                    This field is required
+                                </label>
+                                <!--{{modal_address.contact_name}}-->
+                                <!-- ngIf: delivery.id -->
+                            </div>
+                            <div class="clearfix"></div>
+                        </div>
+                        <div class="form-group">
+                            <div class="col-md-4">
+                                <div class="text-right">
+                                    <label for="contact_name" class="ng-binding">
+                                        Contact Name:
+                                    </label>
+                                    <div class="required">*</div>
+                                </div>
+                            </div>
+                            <div class="col-md-8">
+                                <input class="form-control ng-pristine ng-valid valid"  name="contactname" #contactName="ngModel" ngModel required  placeholder="Contact Name" type="text" style="">
+                                <label *ngIf="contactName.errors?.required && addressForm.submitted" class="error">
+                                    This field is required
+                                </label>
+                            </div>
+                            <div class="clearfix"></div>
+                        </div>
+                        <div class="form-group">
+                            <div class="col-md-4">
+                                <div class="text-right">
+                                    <label for="address" class="ng-binding">
+                                        Address:
+                                    </label>
+                                </div>
+                            </div>
+                            <div class="col-md-8">
+                                <input class="form-control ng-pristine ng-valid" id="address" name="address1" #address1="ngModel" ngModel placeholder="Address" type="text" style="">
+                            </div>
+                            <div class="clearfix"></div>
+                        </div>
+                        <div class="form-group">
+                            <div class="col-md-4">
+                                <div class="text-right">
+                                    <label for="address2" class="ng-binding">
+                                        Address (Line 2):
+                                    </label>
+                                </div>
+                            </div>
+                            <div class="col-md-8">
+                                <input class="form-control ng-pristine ng-valid" id="address2" name="address2" #address2="ngModel" ngModel placeholder="Address (Line 2)" type="text"  style="">
+                            </div>
+                            <div class="clearfix"></div>
+                        </div>
+                        <div class="form-group">
+                            <div class="col-md-4">
+                                <div class="text-right ng-binding">
+                                    Country:
+                                    <div class="required">*</div>
+                                </div>
+                            </div>
+                            <div class="col-md-3">
+                                <select class="form-control ng-pristine ng-valid ng-valid-required" name="Country"  #Country="ngModel" ngModel placeholder="Choose" required="" style="" [ngModelOptions]="{standalone: true}">
+                                    <option value="BD">Bangladesh</option>
+                                    <option value="CN">China</option>
+                                    <option value="FR">France</option>
+                                    <option value="HK">Hong Kong</option>
+                                    <option value="IN">India</option>
+                                    <option disabled="" value="-------------">-------------</option>
+                                    <option value="AD">Andorra</option>
+                                    <option value="AE">United Arab Emirates</option>
+                                    <option value="AF">Afghanistan</option>
+                                    <option value="AG">Antigua and Barbuda</option>
+                                    <option value="AI">Anguilla</option>
+                                    <option value="AL">Albania</option>
+                                    <option value="AM">Armenia</option>
+                                    <option value="AO">Angola</option>
+                                    <option value="AQ">Antarctica</option>
+                                    <option value="AR">Argentina</option>
+                                    <option value="AS">American Samoa</option>
+                                    <option value="AT">Austria</option>
+                                    <option value="AU">Australia</option>
+                                    <option value="AW">Aruba</option>
+                                    <option value="AX">Åland Islands</option>
+                                    <option value="AZ">Azerbaijan</option>
+                                    <option value="BA">Bosnia and Herzegovina</option>
+                                    <option value="BB">Barbados</option>
+                                    <option value="BE">Belgium</option>
+                                    <option value="BF">Burkina Faso</option>
+                                    <option value="BG">Bulgaria</option>
+                                    <option value="BH">Bahrain</option>
+                                    <option value="BI">Burundi</option>
+                                    <option value="BJ">Benin</option>
+                                    <option value="BL">Saint Barthélemy</option>
+                                    <option value="BM">Bermuda</option>
+                                    <option value="BN">Brunei Darussalam</option>
+                                    <option value="BO">Bolivia, Plurinational State of</option>
+                                    <option value="BQ">Bonaire, Sint Eustatius and Saba</option>
+                                    <option value="BR">Brazil</option>
+                                    <option value="BS">Bahamas</option>
+                                    <option value="BT">Bhutan</option>
+                                    <option value="BV">Bouvet Island</option>
+                                    <option value="BW">Botswana</option>
+                                    <option value="BY">Belarus</option>
+                                    <option value="BZ">Belize</option>
+                                    <option value="CA">Canada</option>
+                                    <option value="CC">Cocos (Keeling) Islands</option>
+                                    <option value="CD">Congo, The Democratic Republic of the</option>
+                                    <option value="CF">Central African Republic</option>
+                                    <option value="CG">Congo</option>
+                                    <option value="CH">Switzerland</option>
+                                    <option value="CI">Côte d'Ivoire</option>
+                                    <option value="CK">Cook Islands</option>
+                                    <option value="CL">Chile</option>
+                                    <option value="CM">Cameroon</option>
+                                    <option value="CO">Colombia</option>
+                                    <option value="CR">Costa Rica</option>
+                                    <option value="CU">Cuba</option>
+                                    <option value="CV">Cape Verde</option>
+                                    <option value="CW">Curaçao</option>
+                                    <option value="CX">Christmas Island</option>
+                                    <option value="CY">Cyprus</option>
+                                    <option value="CZ">Czech Republic</option>
+                                    <option value="DE">Germany</option>
+                                    <option value="DJ">Djibouti</option>
+                                    <option value="DK">Denmark</option>
+                                    <option value="DM">Dominica</option>
+                                    <option value="DO">Dominican Republic</option>
+                                    <option value="DZ">Algeria</option>
+                                    <option value="EC">Ecuador</option>
+                                    <option value="EE">Estonia</option>
+                                    <option value="EG">Egypt</option>
+                                    <option value="EH">Western Sahara</option>
+                                    <option value="ER">Eritrea</option>
+                                    <option value="ES">Spain</option>
+                                    <option value="ET">Ethiopia</option>
+                                    <option value="FI">Finland</option>
+                                    <option value="FJ">Fiji</option>
+                                    <option value="FK">Falkland Islands (Malvinas)</option>
+                                    <option value="FM">Micronesia, Federated States of</option>
+                                    <option value="FO">Faroe Islands</option>
+                                    <option value="GA">Gabon</option>
+                                    <option value="GB">United Kingdom</option>
+                                    <option value="GD">Grenada</option>
+                                    <option value="GE">Georgia</option>
+                                    <option value="GF">French Guiana</option>
+                                    <option value="GG">Guernsey</option>
+                                    <option value="GH">Ghana</option>
+                                    <option value="GI">Gibraltar</option>
+                                    <option value="GL">Greenland</option>
+                                    <option value="GM">Gambia</option>
+                                    <option value="GN">Guinea</option>
+                                    <option value="GP">Guadeloupe</option>
+                                    <option value="GQ">Equatorial Guinea</option>
+                                    <option value="GR">Greece</option>
+                                    <option value="GS">South Georgia and the South Sandwich Islands</option>
+                                    <option value="GT">Guatemala</option>
+                                    <option value="GU">Guam</option>
+                                    <option value="GW">Guinea-Bissau</option>
+                                    <option value="GY">Guyana</option>
+                                    <option value="HM">Heard Island and McDonald Islands</option>
+                                    <option value="HN">Honduras</option>
+                                    <option value="HR">Croatia</option>
+                                    <option value="HT">Haiti</option>
+                                    <option value="HU">Hungary</option>
+                                    <option value="ID">Indonesia</option>
+                                    <option value="IE">Ireland</option>
+                                    <option value="IL">Israel</option>
+                                    <option value="IM">Isle of Man</option>
+                                    <option value="IO">British Indian Ocean Territory</option>
+                                    <option value="IQ">Iraq</option>
+                                    <option value="IR">Iran, Islamic Republic of</option>
+                                    <option value="IS">Iceland</option>
+                                    <option value="IT">Italy</option>
+                                    <option value="JE">Jersey</option>
+                                    <option value="JM">Jamaica</option>
+                                    <option value="JO">Jordan</option>
+                                    <option value="JP">Japan</option>
+                                    <option value="KE">Kenya</option>
+                                    <option value="KG">Kyrgyzstan</option>
+                                    <option value="KH">Cambodia</option>
+                                    <option value="KI">Kiribati</option>
+                                    <option value="KM">Comoros</option>
+                                    <option value="KN">Saint Kitts and Nevis</option>
+                                    <option value="KP">Korea, Democratic People's Republic of</option>
+                                    <option value="KR">Korea</option>
+                                    <option value="KW">Kuwait</option>
+                                    <option value="KY">Cayman Islands</option>
+                                    <option value="KZ">Kazakhstan</option>
+                                    <option value="LA">Lao People's Democratic Republic</option>
+                                    <option value="LB">Lebanon</option>
+                                    <option value="LC">Saint Lucia</option>
+                                    <option value="LI">Liechtenstein</option>
+                                    <option value="LK">Sri Lanka</option>
+                                    <option value="LR">Liberia</option>
+                                    <option value="LS">Lesotho</option>
+                                    <option value="LT">Lithuania</option>
+                                    <option value="LU">Luxembourg</option>
+                                    <option value="LV">Latvia</option>
+                                    <option value="LY">Libya</option>
+                                    <option value="MA">Morocco</option>
+                                    <option value="MC">Monaco</option>
+                                    <option value="MD">Moldova, Republic of</option>
+                                    <option value="ME">Montenegro</option>
+                                    <option value="MF">Saint Martin (French part)</option>
+                                    <option value="MG">Madagascar</option>
+                                    <option value="MH">Marshall Islands</option>
+                                    <option value="MK">Macedonia, Republic of</option>
+                                    <option value="ML">Mali</option>
+                                    <option value="MM">Myanmar</option>
+                                    <option value="MN">Mongolia</option>
+                                    <option value="MO">Macao</option>
+                                    <option value="MP">Northern Mariana Islands</option>
+                                    <option value="MQ">Martinique</option>
+                                    <option value="MR">Mauritania</option>
+                                    <option value="MS">Montserrat</option>
+                                    <option value="MT">Malta</option>
+                                    <option value="MU">Mauritius</option>
+                                    <option value="MV">Maldives</option>
+                                    <option value="MW">Malawi</option>
+                                    <option value="MX">Mexico</option>
+                                    <option value="MY">Malaysia</option>
+                                    <option value="MZ">Mozambique</option>
+                                    <option value="NA">Namibia</option>
+                                    <option value="NC">New Caledonia</option>
+                                    <option value="NE">Niger</option>
+                                    <option value="NF">Norfolk Island</option>
+                                    <option value="NG">Nigeria</option>
+                                    <option value="NI">Nicaragua</option>
+                                    <option value="NL">Netherlands</option>
+                                    <option value="NO">Norway</option>
+                                    <option value="NP">Nepal</option>
+                                    <option value="NR">Nauru</option>
+                                    <option value="NU">Niue</option>
+                                    <option value="NZ">New Zealand</option>
+                                    <option value="OM">Oman</option>
+                                    <option value="PA">Panama</option>
+                                    <option value="PE">Peru</option>
+                                    <option value="PF">French Polynesia</option>
+                                    <option value="PG">Papua New Guinea</option>
+                                    <option value="PH">Philippines</option>
+                                    <option value="PK">Pakistan</option>
+                                    <option value="PL">Poland</option>
+                                    <option value="PM">Saint Pierre and Miquelon</option>
+                                    <option value="PN">Pitcairn</option>
+                                    <option value="PS">Palestine, State of</option>
+                                    <option value="PT">Portugal</option>
+                                    <option value="PW">Palau</option>
+                                    <option value="PY">Paraguay</option>
+                                    <option value="QA">Qatar</option>
+                                    <option value="RE">Réunion</option>
+                                    <option value="RO">Romania</option>
+                                    <option value="RS">Serbia</option>
+                                    <option value="RU">Russian Federation</option>
+                                    <option value="RW">Rwanda</option>
+                                    <option value="SA">Saudi Arabia</option>
+                                    <option value="SB">Solomon Islands</option>
+                                    <option value="SC">Seychelles</option>
+                                    <option value="SD">Sudan</option>
+                                    <option value="SE">Sweden</option>
+                                    <option value="SG">Singapore</option>
+                                    <option value="SH">Saint Helena, Ascension and Tristan da Cunha</option>
+                                    <option value="SI">Slovenia</option>
+                                    <option value="SJ">Svalbard and Jan Mayen</option>
+                                    <option value="SK">Slovakia</option>
+                                    <option value="SL">Sierra Leone</option>
+                                    <option value="SM">San Marino</option>
+                                    <option value="SN">Senegal</option>
+                                    <option value="SO">Somalia</option>
+                                    <option value="SR">Suriname</option>
+                                    <option value="SS">South Sudan</option>
+                                    <option value="ST">Sao Tome and Principe</option>
+                                    <option value="SV">El Salvador</option>
+                                    <option value="SX">Sint Maarten (Dutch part)</option>
+                                    <option value="SY">Syrian Arab Republic</option>
+                                    <option value="SZ">Swaziland</option>
+                                    <option value="TC">Turks and Caicos Islands</option>
+                                    <option value="TD">Chad</option>
+                                    <option value="TF">French Southern Territories</option>
+                                    <option value="TG">Togo</option>
+                                    <option value="TH">Thailand</option>
+                                    <option value="TJ">Tajikistan</option>
+                                    <option value="TK">Tokelau</option>
+                                    <option value="TL">Timor-Leste</option>
+                                    <option value="TM">Turkmenistan</option>
+                                    <option value="TN">Tunisia</option>
+                                    <option value="TO">Tonga</option>
+                                    <option value="TR">Turkey</option>
+                                    <option value="TT">Trinidad and Tobago</option>
+                                    <option value="TV">Tuvalu</option>
+                                    <option value="TW">Taiwan</option>
+                                    <option value="TZ">Tanzania, United Republic of</option>
+                                    <option value="UA">Ukraine</option>
+                                    <option value="UG">Uganda</option>
+                                    <option value="UM">United States Minor Outlying Islands</option>
+                                    <option value="US">United States</option>
+                                    <option value="UY">Uruguay</option>
+                                    <option value="UZ">Uzbekistan</option>
+                                    <option value="VA">Holy See (Vatican City State)</option>
+                                    <option value="VC">Saint Vincent and the Grenadines</option>
+                                    <option value="VE">Venezuela, Bolivarian Republic of</option>
+                                    <option value="VG">Virgin Islands, British</option>
+                                    <option value="VI">Virgin Islands, U.S.</option>
+                                    <option value="VN">Vietnam</option>
+                                    <option value="VU">Vanuatu</option>
+                                    <option value="WF">Wallis and Futuna</option>
+                                    <option value="WS">Samoa</option>
+                                    <option value="YE">Yemen</option>
+                                    <option value="YT">Mayotte</option>
+                                    <option value="ZA">South Africa</option>
+                                    <option value="ZM">Zambia</option>
+                                    <option value="ZW">Zimbabwe</option>
+                                    <option value="KV">Kosovo</option>
+                                </select>
+                            </div>
+                            <div class="wrap ng-scope" ng-if="regions.length > 0">
+                                <div class="col-md-2">
+                                    <div class="text-right ng-binding">
+                                        State / Province:
 
+                                    </div>
+                                </div>
 
+                            </div>
+                            <div class="clearfix"></div>
+                        </div>
+                        <div class="form-group">
+                            <div class="col-md-4">
+                                <div class="text-right">
+                                    <label for="postal_code" class="ng-binding">
+                                        Postal Code:
+                                    </label>
+                                </div>
+                            </div>
+                            <div class="col-md-3">
+                                <input class="form-control ng-pristine ng-valid" id="postal_code" name="postalcode" #postalcode="ngModel" ngModel placeholder="Postal Code" type="text" style="">
+                            </div>
+                            <div class="col-md-2">
+                                <div class="text-right">
+                                    <label for="city" class="ng-binding">
+                                        City:
+                                    </label>
+                                    <div class="required">*</div>
+                                </div>
+                            </div>
+                            <div class="col-md-3">
+                                <input class="form-control ng-pristine ng-valid" id="city" name="city" #city="ngModel" ngModel required placeholder="City" type="text" style="">
+                                <label *ngIf="city.errors?.required && addressForm.submitted" class="error">
+                                    This field is required
+                                </label>
+                            </div>
+                            <div class="clearfix"></div>
+                        </div>
+                        <div class="form-group">
+                            <div class="col-md-10 col-md-offset-2">
+                                <hr>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="col-md-4">
+                                <div class="text-right">
+                                    <label for="tel" class="ng-binding">
+                                        Tel:
+                                    </label>
+                                    <div class="required">*</div>
+                                </div>
+                            </div>
+                            <div class="col-md-8">
+                                <!--[(ngModel)]="modal_address.phoneNumber"-->
+                                <int-phone-prefix name="phoneNumber" #phoneNumber="ngModel" ngModel></int-phone-prefix>
+                                <label *ngIf="phoneNumber.errors?.required && addressForm.submitted" class="error">
+                                    This field is required
+                                </label>
 
+                            </div>
+                            <div class="clearfix"></div>
+                        </div>
+                        <div class="form-group">
+                            <div class="col-md-4">
+                                <div class="text-right">
+                                    <label for="email" class="ng-binding">
+                                        Email(s):
+                                    </label>
+                                </div>
+                            </div>
+                            <div class="col-md-8">
+                                <!--pattern="^(w+[w-.+_]*w+)@(w+[w-.+_]*).([w-.+_]*w+)$"-->
+                                <input class="form-control ng-pristine ng-invalid ng-invalid-required" id="other_email" multiple="" name="email" #email="ngModel" ngModel placeholder="Email(s)" required="" type="text" value="" style="">
+                                <label *ngIf="email.errors?.required && addressForm.submitted" class="error">
+                                    This field is required
+                                </label>
+                            </div>
+                            <div class="clearfix"></div>
+                        </div>
+                        <div class="form-group">
+                            <div class="col-md-4">
+                                <div class="text-right">
+                                    <label id="prefered_currency" class="ng-binding">
+                                        Preferred Currency:
+                                    </label>
+                                    <div class="required">*</div>
+                                </div>
+                            </div>
+                            <div class="col-md-8">
+
+                                <select class="form-control ng-pristine ng-valid" name="currency" #currency [(ngModel)]="modal_address.preferred_currency" style="">
+                                    <option value="usd">usd</option>
+                                    <option value="eur">eur</option>
+                                    <option value="hkd">hkd</option>
+                                </select>
+                            </div>
+                            <div class="clearfix"></div>
+                        </div>
+
+                    </div>
+                    <div class="modal-footer footer-form-modal" style="background-color: #dac8b1;">
+                        <div class="pull-left">
+                            <a (click)="close('openAddressDialog');" class="ng-binding cancelbtn cursorHand">
+                                Cancel
+                            </a>
+                        </div>
+                        <div class="pull-right">
+                            <button class="footer-button button-new btn-approve" type="submit">
+                                Confirm
+                            </button>
+                        </div>
+                        <div class="clearfix"></div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</app-Setting-dialog>
+
+    <app-Setting-dialog [(visible)]="OpenUserDialog">
+        <div class="modal-content" ng-transclude="">
+            <div class="edit-user-password ng-scope">
+                <div class="pad-m"></div>
+                <div>
+                    <form class="edit-user-password-form ng-pristine ng-valid" data-id="NPCL-07-0092" name="address_form" novalidate="novalidate">
+                        <div class="form-group">
+                            <div class="col-md-4">
+                                <div class="text-right ng-binding">
+                                    Username:
+                                    <div class="required">*</div>
+                                </div>
+                            </div>
+                            <div class="col-md-8">
+                                <input class="form-control ng-pristine ng-valid" disabled="" id="username" name="username" ng-model="userInfo.username" placeholder="Username" type="text" style="">
+                            </div>
+                            <div class="clearfix"></div>
+                        </div>
+                        <div class="form-group">
+                            <div class="col-md-4">
+                                <div class="text-right ng-binding">
+                                    Password:
+                                    <div class="required">*</div>
+                                </div>
+                            </div>
+                            <div class="col-md-8">
+                                <input class="form-control ng-pristine ng-valid" id="password" name="password" ng-model="userInfo.password" placeholder="Password" type="password" style="">
+                            </div>
+                            <div class="clearfix"></div>
+                        </div>
+                        <div class="form-group">
+                            <div class="col-md-4">
+                                <div class="text-right ng-binding">
+                                    Confirm Password:
+                                    <div class="required">*</div>
+                                </div>
+                            </div>
+                            <div class="col-md-8">
+                                <input class="form-control ng-pristine ng-valid" id="confirm_password" name="confirm_password" ng-model="userInfo.confirm_password" placeholder="Confirm Password" type="password" style="">
+                            </div>
+                            <div class="clearfix"></div>
+                        </div>
+                    </form>
+                </div>
+                <div class="modal-footer footer-form-modal" style="background-color: #dac8b1;">
+                    <div class="pull-left">
+                        <a (click)="close('OpenUserDialog');" class="ng-binding cancelbtn cancelbtn cursorHand">
+                            Cancel
+                        </a>
+                    </div>
+                    <div class="pull-right">
+                        <button class="footer-button button-new btn-approve"  type="submit">
+                            Save New Password
+                        </button>
+                    </div>
+                    <div class="clearfix"></div>
+                </div>
+            </div>
+        </div>
+    </app-Setting-dialog>
+
+    <div class="tab-pane user-contact-pane active" id="user-contact">
+        <!-- ngInclude: 'partials/settings/_user_contact_tab.html' --><div ng-include="'partials/settings/_user_contact_tab.html'" class="ng-scope">
+            <a class="edit-contact action-link ng-scope" ng-click="openEditContactModal(user_contact, &quot;update_user_contact&quot;, &quot;title&quot;,&quot;settings_edit_user_contact&quot;)" title="Edit">
+                <span class="action-icon">
+                    <div class="icon icon-pencil"></div>
+                </span>
+                <span [routerLink]="" (click)="AddressDialog($event)" class="cursorHand">
+                    Edit
+                </span>
+            </a>
+            <div class="clearfix ng-scope"></div>
+            <div class="row line-contact-info ng-scope">
+                <div class="col-xs-4 text-right ng-binding">
+                    Company Name:
+                </div>
+                <div class="col-xs-8 dot-when-over ng-binding">
+                    {{modal_address.company_name}}
+                </div>
+            </div>
+            <div class="row line-contact-info ng-scope">
+                <div class="col-xs-4 text-right ng-binding">
+                    Contact Name:
+                </div>
+                <div class="col-xs-8 dot-when-over ng-binding">
+                    {{modal_address.contact_name}}
+                </div>
+            </div>
+            <div class="row line-contact-info ng-scope">
+                <div class="col-xs-4 text-right ng-binding">
+                    Tel:
+                </div>
+                <div class="col-xs-8 ng-binding">
+                    {{modal_address.phoneNumber}}
+                </div>
+            </div>
+            <div class="row line-contact-info ng-scope">
+                <div class="col-xs-4 text-right ng-binding">
+                    Email(s):
+                </div>
+                <div class="col-xs-8 dot-when-over ng-binding">
+                    {{modal_address.email}}
+                </div>
+            </div>
+            <div class="row line-contact-info ng-scope">
+                <div class="col-xs-4 text-right ng-binding">
+                    Preferred Currency:
+                </div>
+                <div class="col-xs-8 dot-when-over ng-binding">
+                    {{modal_address.preferred_currency}}
+                </div>
+            </div>
+            <div class="row line-contact-info ng-scope">
+                <div class="col-xs-4 text-right ng-binding">
+                    Address:
+                </div>
+                <div class="col-xs-8 dot-when-over ng-binding">
+                    {{modal_address.address1}}
+                </div>
+            </div>
+            <div class="row line-contact-info ng-scope">
+                <div class="col-xs-4 text-right ng-binding">
+                    Address (Line 2):
+                </div>
+                <div class="col-xs-8 dot-when-over ng-binding">
+                    {{modal_address.address2}}
+                </div>
+            </div>
+            <div class="row line-contact-info ng-scope">
+                <div class="col-xs-4 text-right ng-binding">
+                    Country:
+                </div>
+                <div class="col-xs-2 dot-when-over ng-binding">
+                    France
+                </div>
+                <div class="col-xs-2 text-right">
+                    <!-- ngIf: user_contact.region -->
+                </div>
+                <div class="col-xs-4">
+                    <!-- ngIf: user_contact.region -->
+                </div>
+            </div>
+            <div class="row line-contact-info ng-scope">
+                <div class="col-xs-4 text-right ng-binding">
+                    Postal Code:
+                </div>
+                <div class="col-xs-2 ng-binding">
+                    {{modal_address.postal_code}}
+                </div>
+                <div class="col-xs-2 text-right ng-binding">
+                    City:
+                </div>
+                <div class="col-xs-4 ng-binding">
+                    {{modal_address.city}}
+                </div>
+                <!-- end tab content -->
+            </div>
+            <div class="row ng-scope">
+                <div class="fake-border"></div>
+            </div>
+            <div class="login-info ng-scope">
+                <a class="edit-user-login pull-right action-link" ng-click="openEditUserPasswordModal()" title="Edit">
+                    <span class="action-icon">
+                        <div class="icon icon-pencil"></div>
+                    </span>
+                    <span (click)="UserDialog($event)" class="action-text ng-binding cursorHand">
+                        Edit
+                    </span>
+                </a>
+                <div class="clearfix"></div>
+                <div class="row line-contact-info">
+                    <div class="col-xs-4 text-right ng-binding">
+                        Username:
+                    </div>
+                    <div class="col-xs-8 ng-binding">
+                        mprix
+                    </div>
+                </div>
+                <div class="row line-contact-info">
+                    <div class="col-xs-4 text-right ng-binding">
+                        Password:
+                    </div>
+                    <div class="col-xs-8">
+                        *********
+                    </div>
+                </div>
+            </div>
+            <a class="pull-right action-link ng-scope" href="app/PDF/contactDetails.pdf" target="_blank" title="Export">
+                <span class="action-icon">
+                    <div class="icon icon-pdf"></div>
+                </span>
+                <span class="action-text ng-binding">
+                    Export
+                </span>
+            </a>
+        </div>
+    </div>
