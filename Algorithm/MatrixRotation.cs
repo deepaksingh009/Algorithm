@@ -6,7 +6,7 @@ namespace Algorithm
 {
     public class MatrixRotation
     {
-        public void CreateMatrix()
+        public int[,] CreateMatrix()
         {
             Console.WriteLine("Enter no of row");
             int row = int.Parse(Console.ReadLine());
@@ -39,9 +39,51 @@ namespace Algorithm
                 }
                 Console.WriteLine();
             }
+            return vs;
 
 
 
+        }
+
+        public void RoatateMatrix()
+        {
+            int[,] vs = CreateMatrix();
+            int[,] finalMatrix = vs;
+
+            while (true)
+            {
+                int columnCount = 0;
+                int rowcount = 0;
+                columnCount = finalMatrix.GetLength(1);
+                rowcount = finalMatrix.GetLength(0);
+
+
+                //For Right Rotation
+
+                for (int i = 0; i < columnCount-1; i++)
+                {
+
+                }
+                //For Down Rotation
+                for (int i = 0; i < rowcount-1; i++)
+                {
+
+                }
+                //For Left Rotation
+                for (int i = 0; i < columnCount-1; i++)
+                {
+
+                }
+                //For Up Rotation
+                for (int i = 0; i < rowcount-1; i++)
+                {
+
+                }
+
+
+
+
+            }
         }
     }
 }

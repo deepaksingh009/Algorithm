@@ -12,7 +12,7 @@ namespace Algorithm
         {
 
             MatrixRotation matrixRotation = new MatrixRotation();
-            matrixRotation.CreateMatrix();
+            matrixRotation.RoatateMatrix();
             
 
             Console.ReadKey();
