@@ -11,9 +11,10 @@ namespace Algorithm
         static void Main(string[] args)
         {
 
-            MatrixRotation matrixRotation = new MatrixRotation();
-            matrixRotation.RoatateMatrix();
-            
+            Matrix90DegreeRotation matrix90DegreeRotation = new Matrix90DegreeRotation();
+            matrix90DegreeRotation.Rotation();
+
+
 
             Console.ReadKey();
         }

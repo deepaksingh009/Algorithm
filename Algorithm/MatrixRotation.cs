@@ -61,22 +61,14 @@ namespace Algorithm
                 columnCount = vs.GetLength(1);
                 rowcount = vs.GetLength(0);
 
-
-
                 //For Right Rotation
-
-                for (int i = 0; i < rowcount; i++)
+                for (int j = 1; j < columnCount; j++)
                 {
+                    finalMatrix[rowvalue, j] = vs[rowvalue, j - 1];
+                    columnvalue = j;
 
-
-                    for (int j = 1; j < columnCount; j++)
-                    {
-                        finalMatrix[i, j] = vs[i, j - 1];
-                        columnvalue = j;
-
-                    }
-                    break;
                 }
+
                 //For Down Rotation
                 for (int i = 0; i < rowcount - 1; i++)
                 {
@@ -108,5 +100,51 @@ namespace Algorithm
                 Console.WriteLine();
             }
         }
+
+        public void WritematrixAfterRotation(int[,] vs)
+        {
+            for (int i = 0; i < vs.GetLength(0); i++)
+            {
+                for (int j = 0; j < vs.GetLength(1); j++)
+                {
+                    Console.Write(string.Format("{0}\t", vs[i, j]));
+                }
+                Console.WriteLine();
+            }
+        }
     }
+
+    public class Matrix90DegreeRotation
+    {
+        public void Rotation()
+        {
+            MatrixRotation matrix = new MatrixRotation();
+            int[,] vs = matrix.CreateMatrix();
+
+
+            int columnCount = 0;
+            int rowcount = 0;
+            //int columnvalue = 0;
+            //int rowvalue = 0;
+            columnCount = vs.GetLength(1);
+            rowcount = vs.GetLength(0);
+            int rowvalue = rowcount;
+            int[,] finalmatrix = new int[rowcount, columnCount];
+
+            for (int i = 0; i < columnCount; i++)
+            {
+                for (int j = 0; j < rowcount; j++)
+                {
+                    finalmatrix[rowvalue - 1, j] = vs[j, i];
+
+                }
+                rowvalue--;
+            }
+
+            Console.WriteLine("After Rotation");
+            matrix.WritematrixAfterRotation(finalmatrix);
+
+        }
+    }
+
 }
