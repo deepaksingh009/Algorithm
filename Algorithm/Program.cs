@@ -10,6 +10,29 @@ namespace Algorithm
     {
         static void Main(string[] args)
         {
+
+            PathBetweenVertices pathBetweenVertices = new PathBetweenVertices(4);
+            pathBetweenVertices.Addedges(0,1);
+            pathBetweenVertices.Addedges(0, 2);
+            pathBetweenVertices.Addedges(1, 2);
+            pathBetweenVertices.Addedges(2, 0);
+            pathBetweenVertices.Addedges(2, 3);
+            pathBetweenVertices.Addedges(3,3);
+
+
+            int start = 1;
+            int End = 3;
+            bool check;
+            check=pathBetweenVertices.isreachable(start, End);
+            Console.WriteLine("is path reachable from " + start + "to" + End + "=" + check);
+
+            start = 3;
+            End = 1;
+            check = pathBetweenVertices.isreachable(start, End);
+            Console.WriteLine("is path reachable from " + start + "to" + End + "=" + check);
+
+
+
             Console.ReadKey();
         }
         
