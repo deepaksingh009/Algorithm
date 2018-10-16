@@ -11,23 +11,27 @@ namespace Algorithm
         static void Main(string[] args)
         {
 
-            PathBetweenVertices pathBetweenVertices = new PathBetweenVertices(4);
+            PathBetweenVertices pathBetweenVertices = new PathBetweenVertices(6);
             pathBetweenVertices.Addedges(0,1);
-            pathBetweenVertices.Addedges(0, 2);
-            pathBetweenVertices.Addedges(1, 2);
-            pathBetweenVertices.Addedges(2, 0);
-            pathBetweenVertices.Addedges(2, 3);
-            pathBetweenVertices.Addedges(3,3);
+            pathBetweenVertices.Addedges(1,0);
+            pathBetweenVertices.Addedges(1,2);
+            pathBetweenVertices.Addedges(2, 1);
+            pathBetweenVertices.Addedges(2,5);
+            pathBetweenVertices.Addedges(5,2);
+            pathBetweenVertices.Addedges(2,3);
+            pathBetweenVertices.Addedges(3,2);
+            pathBetweenVertices.Addedges(3,4);
+            pathBetweenVertices.Addedges(4,3);
 
 
-            int start = 1;
-            int End = 3;
+            int start = 0;
+            int End = 4;
             bool check;
             check=pathBetweenVertices.isreachable(start, End);
             Console.WriteLine("is path reachable from " + start + "to" + End + "=" + check);
 
-            start = 3;
-            End = 1;
+            start = 4;
+            End = 0;
             check = pathBetweenVertices.isreachable(start, End);
             Console.WriteLine("is path reachable from " + start + "to" + End + "=" + check);
 
