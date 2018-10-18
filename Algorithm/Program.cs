@@ -15,7 +15,7 @@ namespace Algorithm
             pathBetweenVertices.Addedges(0,1);
             pathBetweenVertices.Addedges(1,0);
             pathBetweenVertices.Addedges(1,2);
-            pathBetweenVertices.Addedges(2, 1);
+            pathBetweenVertices.Addedges(2,1);
             pathBetweenVertices.Addedges(2,5);
             pathBetweenVertices.Addedges(5,2);
             pathBetweenVertices.Addedges(2,3);

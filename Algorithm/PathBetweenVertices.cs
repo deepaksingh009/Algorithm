@@ -22,28 +22,26 @@ namespace Algorithm
         public bool isreachable(int start, int end)
         {
             bool check = false;
+            int startnode = 0;
+            int endNode = 0;
             List<int> ls = new List<int>();
+
             List<int> es = new List<int>();
             while (true)
             {
+                if (ls.Count == 0)
+                {
+                    ls = new List<int>();
+                }
+               
                 //Forloopfromstartnode
                 for (int i = 0; i < vs.GetLength(0); i++)
                 {
-                    if (vs[start, i] == 1)
+                    if (vs[startnode, i] == 1)
                         ls.Add(i);
 
                 }
-
-                //ForLoopFromLastnode
-
-                for (int i = 0; i < vs.GetLength(0); i++)
-                {
-
-                    if (vs[end, i] == 1)
-                        es.Add(i);
-                }
-
-
+                
                 foreach (var item in ls)
                 {
                     foreach (var item1 in es)
@@ -58,6 +56,8 @@ namespace Algorithm
                         }
                     }
                 }
+                startnode++;
+                endNode++;
 
             }
 
