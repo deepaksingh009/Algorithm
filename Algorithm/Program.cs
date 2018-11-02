@@ -6,6 +6,16 @@ using Dijkstra.NET.Model;
 
 namespace Algorithm
 {
+    public class Models
+    {
+        public int A { get; set; }
+        public int B { get; set; }
+        public int C { get; set; }
+        public int D { get; set; }
+        public int X { get; set; }
+
+
+    }
     class Program
     {
         public void NoOfMarks()
@@ -35,19 +45,94 @@ namespace Algorithm
             }
         }
 
+        
+
         public void TIcketBooking()
         {
+
+            //A: It denotes the cost of one ticket of the flight. 6000
+            //B: It denotes the number of total available seats in the flight.10
+            //C: If the numbers of available seats are less than or equal to c, then the cost of the flight ticket increases to d 5.
+            //D: It denotes the new hiked cost.6500
+            //X: It denotes family member; 7
+
+            //Input format A B C D X
+            Models models = new Models();
+            int totalcost = 0;
+            int leftno = 0;
+            var test = Console.ReadLine().Split(' ');
+            models.A = Convert.ToInt32(test[0]);
+            models.B = Convert.ToInt32(test[1]);
+            models.C = Convert.ToInt32(test[2]);
+            models.D = Convert.ToInt32(test[3]);
+            models.X = Convert.ToInt32(test[4]);
+            if(models.B<models.C)
+            {
+                leftno = models.B - models.C;
+            }
+            else
+            {
+
+                leftno = models.C - models.B;
+            }
+            totalcost = models.A * leftno;
+            if(models.C<=models.X)
+            {
+                
+                leftno =  models.X-leftno;
+                totalcost = totalcost + (models.D * leftno);
+            }
+            else if(models.X<=models.C)
+            {
+
+            }
+
+            Console.WriteLine(totalcost);
+
+
 
 
         }
 
         static void Main(string[] args)
         {
-           
+            Models models = new Models();
+            int totalcost = 0;
+            int leftno = 0;
+            var test = Console.ReadLine().Split(' ');
+            models.A = Convert.ToInt32(test[0]);
+            models.B = Convert.ToInt32(test[1]);
+            models.C = Convert.ToInt32(test[2]);
+            models.D = Convert.ToInt32(test[3]);
+            models.X = Convert.ToInt32(test[4]);
+            if (models.B < models.C)
+            {
+                leftno = models.C - models.B;
+                
+            }
+            else
+            {
+
+                leftno = models.B - models.C;
+            }
+            totalcost = models.A * leftno;
+            if (models.C <= models.X)
+            {
+
+                leftno = models.X - leftno;
+                totalcost = totalcost + (models.D * leftno);
+            }
+            else if (models.X <= models.C)
+            {
+                leftno = models.X - leftno;
+                totalcost = totalcost + (models.D * leftno);
+            }
+
+            Console.WriteLine(totalcost);
 
             Console.ReadKey();
         }
-        
+
 
         public static void Factorcalculation()
         {
