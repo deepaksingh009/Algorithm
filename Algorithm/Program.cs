@@ -45,7 +45,7 @@ namespace Algorithm
             }
         }
 
-        
+
 
         public void TIcketBooking()
         {
@@ -66,7 +66,7 @@ namespace Algorithm
             models.C = Convert.ToInt32(test[2]);
             models.D = Convert.ToInt32(test[3]);
             models.X = Convert.ToInt32(test[4]);
-            if(models.B<models.C)
+            if (models.B < models.C)
             {
                 leftno = models.B - models.C;
             }
@@ -76,13 +76,13 @@ namespace Algorithm
                 leftno = models.C - models.B;
             }
             totalcost = models.A * leftno;
-            if(models.C<=models.X)
+            if (models.C <= models.X)
             {
-                
-                leftno =  models.X-leftno;
+
+                leftno = models.X - leftno;
                 totalcost = totalcost + (models.D * leftno);
             }
-            else if(models.X<=models.C)
+            else if (models.X <= models.C)
             {
 
             }
@@ -96,41 +96,102 @@ namespace Algorithm
 
         static void Main(string[] args)
         {
-            Models models = new Models();
-            int totalcost = 0;
-            int leftno = 0;
-            var test = Console.ReadLine().Split(' ');
-            models.A = Convert.ToInt32(test[0]);
-            models.B = Convert.ToInt32(test[1]);
-            models.C = Convert.ToInt32(test[2]);
-            models.D = Convert.ToInt32(test[3]);
-            models.X = Convert.ToInt32(test[4]);
-            if (models.B < models.C)
-            {
-                leftno = models.C - models.B;
-                
-            }
-            else
-            {
+            //int input = Convert.ToInt32(Console.ReadLine());
+            //for (int j = 0; j < input; j++)
+            //{
+            //    string[] inputs = Console.ReadLine().Split(' ');
+            //    int n = Convert.ToInt32(inputs[0]);
+            //    int a = Convert.ToInt32(inputs[1]);
+            //    int b = Convert.ToInt32(inputs[2]);
+            //    int k = getK(a, b);
+            //    int possibilities = 0;
+            //    if (n >= k)
+            //        possibilities = (((n + 1) * (n + 2) / 2) - ((n + 1 - k) * (n + 2 - k) / 2));
+            //    else possibilities = (n + 1) * (n + 2) / 2;
 
-                leftno = models.B - models.C;
-            }
-            totalcost = models.A * leftno;
-            if (models.C <= models.X)
-            {
-
-                leftno = models.X - leftno;
-                totalcost = totalcost + (models.D * leftno);
-            }
-            else if (models.X <= models.C)
-            {
-                leftno = models.X - leftno;
-                totalcost = totalcost + (models.D * leftno);
-            }
-
-            Console.WriteLine(totalcost);
-
+            //    Console.WriteLine(possibilities);
+            //}
+            getinput();
             Console.ReadKey();
+        }
+
+        public static int getK(int a, int b)
+        {
+            int x = a;
+            int y = b;
+            while (a != b)
+            {
+                if (a > b) a -= b;
+                else b -= a;
+            }
+            return (x + y) / a;
+        }
+
+        public static int getinput()
+        {
+            string[] vs = Console.ReadLine().Split(' ');
+
+            string str = string.Empty;
+            int closeounter = 0;
+            int opencounter = 0;
+            int checkpositive = 0;
+            int checknegative = 0;
+            foreach (var item in vs)
+            {
+
+                if (item=="+")
+                {
+                    if (closeounter > 0 && checknegative>0)
+                    {
+                        str = str +')'+ item;
+                    }
+                    else 
+                    {
+                        str = str + item;
+                      // closeounter++;
+                    }
+                    checkpositive++;
+
+                }
+                else if(item=="-")
+                {
+             
+                    if (opencounter > 0 && checkpositive!=0) 
+                    {
+                        str = str + ')' + item;
+                        opencounter--;
+                        closeounter++;
+                        checkpositive = 0;
+                        checknegative++;
+                    }
+                    else if(closeounter!=0)
+                    {
+                        str = str + item  ;
+                        
+                    }
+                    else
+                    {
+                        str = str + item + '(';
+                        opencounter++;
+                    }
+                }
+                else
+                {
+                    str = str + item;
+                }
+
+            }
+
+            while(closeounter<opencounter)
+            {
+                str = str + ')';
+                closeounter++;
+            }
+
+            Console.Write(str);
+
+
+            return 0;
         }
 
 
